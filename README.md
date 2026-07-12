@@ -4,6 +4,8 @@
 
 <h1 align="center">AIUsage</h1>
 
+> An experimental Windows/Linux port lives in [`cross-platform/`](cross-platform/README.md). It is currently a limited MVP, not feature parity with the production macOS app.
+
 <h4 align="center">One dashboard for all your AI subscriptions</h4>
 
 <p align="center">

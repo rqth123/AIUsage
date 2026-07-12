@@ -1,0 +1,37 @@
+name: Cross-platform preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [cross-platform]
+    paths: ['cross-platform/**', '.github/workflows/cross-platform.yml']
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            command: npx electron-builder --win nsis portable --publish never
+          - os: ubuntu-latest
+            command: npx electron-builder --linux AppImage deb --publish never
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: cross-platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cross-platform/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: ${{ matrix.command }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AIUsage-${{ matrix.os }}
+          path: cross-platform/dist/*
+          if-no-files-found: error

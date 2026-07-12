@@ -4,6 +4,8 @@
 
 <h1 align="center">AIUsage</h1>
 
+> Windows / Linux 实验性移植位于 [`cross-platform/`](cross-platform/README.md)。它目前是功能受限的 MVP，不等同于下方 macOS 正式版。
+
 <h4 align="center">AI 订阅一站式看板</h4>
 
 <p align="center">
