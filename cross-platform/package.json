@@ -1,0 +1,37 @@
+{
+  "name": "aiusage-cross-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Experimental Windows and Linux port of AIUsage",
+  "homepage": "https://github.com/rqth123/AIUsage",
+  "author": {
+    "name": "AIUsage contributors",
+    "email": "noreply@github.com"
+  },
+  "type": "module",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win nsis portable --linux AppImage deb"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.sylearn.aiusage.crossplatform",
+    "productName": "AIUsage",
+    "asar": true,
+    "files": ["src/**/*", "package.json", "README.md"],
+    "directories": { "output": "dist" },
+    "win": { "target": ["nsis", "portable"] },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Utility",
+      "maintainer": "AIUsage contributors <noreply@github.com>"
+    },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
+  }
+}
